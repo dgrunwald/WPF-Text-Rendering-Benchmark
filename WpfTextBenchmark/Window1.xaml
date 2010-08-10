@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfTextBenchmark.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WpfTextBenchmark" Height="450" Width="1000"
+        TextOptions.TextFormattingMode="Display"
+	Background="Black"
+>
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+			<Button Click="TextBlockButton_Click">TextBlock</Button>
+			<Button Click="FormattedTextButton_Click">FormattedText</Button>
+			<Button Click="TextLineButton_Click">TextLine</Button>
+			<Button Click="GlyphRunButton_Click">GlyphRun</Button>
+			<Button Name="Direct2DButton" Click="Direct2DButton_Click" Margin="2,0,0,0">Direct2D</Button>
+			<Button Click="GDIButton_Click">WinForms</Button>
+			<Button Click="ExtTextOutButton_Click">GDI</Button>
+			<Button Click="GDIPlusButton_Click">GDI+</Button>
+			<ToggleButton Margin="8,0,0,0" Name="stopped" Unchecked="Stopped_Unchecked">Pause</ToggleButton>
+			<ToggleButton Name="unicode">Unicode</ToggleButton>
+			<ToggleButton Name="keepEverything">Keep</ToggleButton>
+			<ToggleButton Name="words">Words</ToggleButton>
+			<Slider Minimum="100" Maximum="5000" Value="1500" Interval="100" Name="textCount" ValueChanged="Slider_ValueChanged" Width="100" Foreground="White" />
+		</StackPanel>
+		<ScrollViewer Name="scroll" HorizontalScrollBarVisibility="Auto">
+		</ScrollViewer>
+	</DockPanel>
+</Window>

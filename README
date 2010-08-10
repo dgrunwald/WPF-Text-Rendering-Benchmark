@@ -1,0 +1,26 @@
+This benchmark tests several approaches to text rendering in WPF against each other:
+
+TextBlock: a WPF Canvas with TextBlock elements
+FormattedText: using the DrawingContext.DrawText method
+TextLine: using the Media.TextFormatting namespace
+GlyphRun: using the WPF GlyphRun directly
+	disadvantage: no automatic font fallback -> no unicode support
+
+Direct2D: using DirectWrite
+WinForms: using the WinForms TextRenderer class
+GDI: using GDI via P/Invoke
+GDI+: using the System.Drawing.Graphics.DrawString method
+	disadvantage: accurate measurement of font width seems to be impossible (MeasureString is not good enough)
+
+The speed of the WPF methods is pretty consistent on most machines, ordered like this:
+GlyphRun (fastest)
+TextLine
+FormattedText
+TextBlock (slowest)
+
+However, even on fast machines like my Core i7, none of the WPF methods provides a fluent animation.
+It seems as if most frames (counted by number of OnRender calls) are not drawn to the screen.
+
+"WinForms" is similarly slow to the WPF approaches (maybe a bit faster on older machines).
+Direct2D, GDI and GDI+ all beat WPF hands-down, delivering a fluent animation even on my old notebook with
+Intel onboard graphics. The exact order of these seems to depend on the hardware.
