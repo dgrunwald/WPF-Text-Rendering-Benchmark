@@ -24,3 +24,8 @@ It seems as if most frames (counted by number of OnRender calls) are not drawn t
 "WinForms" is similarly slow to the WPF approaches (maybe a bit faster on older machines).
 Direct2D, GDI and GDI+ all beat WPF hands-down, delivering a fluent animation even on my old notebook with
 Intel onboard graphics. The exact order of these seems to depend on the hardware.
+
+Update: I have since discovered that the WPF DrawingVisual class can be used to
+significantly speed up WPF text rendering.
+I did not update this benchmark to take advantage of DrawingVisual.
+Take a look at AvalonEdit's VisualLineDrawingVisual class for details.
